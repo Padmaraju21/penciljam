@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+    {% for post in posts.items %}
+    <div class="panel panel-default">
+        <article class="media content-section">
+          <img class="img-circle" style="width: 60px; height: 60px;" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="{{ url_for('user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
+              <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small>
+            </div>
+            <h3><a class="article-title" href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h3>
+            <p class="article-content">{{ post.content }}</p>
+          </div>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
